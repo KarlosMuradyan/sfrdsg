@@ -1,0 +1,112 @@
+// Example program
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student{
+    string name;
+    float gpa;
+}
+
+struct Edgnode{
+    Edgnode* prev, next;
+    int ind;
+    int weight;
+}
+
+struct Node{
+    Node* prev, next;
+    int indl
+    Student data;
+    Edgnode* adj;
+}
+
+class List{
+    Node* head;
+    int size;
+    
+    public:
+    
+        List(){
+            head = NULL;
+            size = 0;
+        }
+
+
+
+
+        
+        void insert(Student d_new){
+            Node* new = (Node) malloc(sizeof(Node));
+            
+            new->prev = NULL;
+            new->next = NULL;
+            new->ind = size+1;
+            new->data = d_new;
+            new->adj = NULL;
+        
+            if(size==0){
+                head = new;
+            }
+            else{
+                Node* temp = head;
+                for(int i=0; i<size; i++){
+                    temp = temp->next;
+                }
+                temp->next = new;
+                new->prev = temp;
+            }
+            
+            size++;
+                    
+        }
+        
+        void make_adj(int ind1, int ind2, int w){
+            if(ind1 != ind2){
+                Node* temp = head;
+                for(int i=1; i<ind1; i++){
+                    temp = temp->next;
+                }
+                
+                Edgnode* temp2 = temp->adj;
+                while(temp2 != NULL){
+                    Edgnode* pr = temp2;
+                    temp2 = temp2->next;
+                }
+                temp2->next = NULL;
+                temp->prev = pr;
+                temp2->ind = ind2;
+                temp2 -> weight = w;
+            
+            
+            }
+        }
+        
+        ind get_ind(Student s){
+            for(int i=0; i<size; i++){
+                Node* temp = head;
+                if(temp->data == s){
+                    return temp->ind;
+                }
+            }
+            return 0;
+        }
+
+
+
+
+
+}
+
+struct Node{
+    Node* prev, next;
+    int ind;
+    Student data;
+    Edgnode* adj;
+}
+
+
+int main()
+{
+  
+}
